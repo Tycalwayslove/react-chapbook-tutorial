@@ -19,9 +19,10 @@
           this.state = { isLiked: false };
         }
         setState(state) {
-          const
+          const oldEl = this.el;
           this.state = state;
           this.el = this.render();
+          if (this.onStateChange) this.onStateChange(oldEl, this.el);
         }
         changeLikeText() {
           this.setState({
@@ -45,11 +46,12 @@
         }
       }
       const wrapper = document.querySelector(".wrapper");
-      const likeButton1 = new LikeButton();
-      wrapper.appendChild(likeButton1.render());
-
-      const likeButton2 = new LikeButton();
-      wrapper.appendChild(likeButton2.render());
+      const likeButton = new LikeButton();
+      wrapper.appendChild(likeButton.render());
+      likeButton.onStateChange = (oldEl, newEl) => {
+        wrapper.insertBefore(newEl, oldEl); // 插入新的元素
+        wrapper.removeChild(oldEl);
+      };
     </script>
   </body>
 </html>
