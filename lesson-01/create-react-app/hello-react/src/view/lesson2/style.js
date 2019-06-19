@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import Clock from './clock'
 import AutoFocusInput from './autoFocusInput'
 import Card from './card'
 class Header extends Component {
