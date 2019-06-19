@@ -17,27 +17,20 @@ class LikeButton extends Component {
 
   }
   handleClickOnLikeButton(){
-    // console.log(this.state.isLiked)
-    // this.setState({isLiked:!this.state.isLiked})
-    console.log(this.state.count)
-    // this.setState({count:this.state.count+1})
-    this.setState((prevState) => {
-      return { count: 0 }
-    })
-    this.setState((prevState) => {
-      return { count: prevState.count + 1 } // 上一个 setState 的返回是 count 为 0，当前返回 1
-    })
-    console.log(this.state.count)
-    this.setState((prevState) => {
-      console.log(prevState);
-      return { count: prevState.count + 2 } // 上一个 setState 的返回是 count 为 1，当前返回 3
-    })
-    console.log(this.state.count)
-
+    this.setState({isLiked:!this.state.isLiked})
   }
   render(){
+    // const likeText = this.props.likeText || '取消'
+    // const unLikedText  = this.props.unLikedText || '点赞'
+    const objProps = this.props.wordings || {
+      likeText:'点赞',
+      unLikedText:'不点赞'
+    }
+    
+
     return (
-      <button onClick={this.handleClickOnLikeButton.bind(this)}>{this.state.isLiked?'取消':'点赞'}👍</button>
+      <button onClick={this.handleClickOnLikeButton.bind(this)}>{this.state.isLiked?objProps.likeText:objProps.unLikedText}👍</button>
+      
     )
   }
 }
@@ -50,7 +43,8 @@ class Main extends Component {
     return (
       <div>
         <h1 onClick={this.handleClick.bind(this)}>点击我试试</h1>
-        <LikeButton></LikeButton>
+        {/* <LikeButton likeText="我喜欢" unLikedText='我不喜欢'></LikeButton> */}
+        <LikeButton wordings={{likeText:'多个喜欢',unLikedText:'多个不喜欢'}}></LikeButton>
       </div>  
 
     )
