@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 // import Clock from './clock'
+import AutoFocusInput from './autoFocusInput'
 class Header extends Component {
   constructor () {
     super ();
@@ -60,6 +61,7 @@ class Index extends Component {
         {this.state.isShowHeader ? <Header /> : null}
         <button onClick={this.handleShowOrHide.bind (this)} >点击我</button>
         {/* <Clock></Clock> */}
+        <AutoFocusInput/>
       </div>
 
     );

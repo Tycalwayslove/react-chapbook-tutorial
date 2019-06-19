@@ -1,4 +1,5 @@
-import React ,{ Component} from 'react'
+import React, {Component} from 'react';
+
 class Clock extends Component{
   constructor(){
     super()
