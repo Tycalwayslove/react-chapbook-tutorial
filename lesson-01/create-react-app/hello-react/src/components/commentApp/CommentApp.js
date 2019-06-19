@@ -3,10 +3,17 @@ import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 class CommentApp extends Component {
   constructor(){
+    console.log("constructor")
     super()
     this.state = {
       comments:[]
     }
+  }
+  componentWillMount(){
+    console.log("component will mount")
+  }
+  componentDidMount(){
+    console.log('component did mount')
   }
   handleSubmitComment(comment){
     if(!comment) return 
@@ -20,6 +27,7 @@ class CommentApp extends Component {
   }
 
   render () {
+    console.log('render')
     return (
       <div className='wrapper'>
         <CommentInput onSubmit={this.handleSubmitComment.bind(this)} />
