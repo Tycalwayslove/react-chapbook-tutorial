@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 // import Clock from './clock'
 import AutoFocusInput from './autoFocusInput'
+import Card from './card'
 class Header extends Component {
   constructor () {
     super ();
     this.state = {
-      Date:new Date()
+      Date:new Date(),
+      htmlContent:"<h1>我是一只鱼</h1>"
     }
     console.log ('construct');
   }
@@ -20,6 +22,8 @@ class Header extends Component {
   }
 
   componentDidMount () {
+    console.log(this)
+
     console.log ('component did mount');
   }
   componentWillUnmount(){
@@ -32,8 +36,9 @@ class Header extends Component {
     console.log ('render');
     return (
       <div>
-      <h1>
+      <h1 style={{color:'red'}}>
         <p>现在的时间是：</p>
+        <p dangerouslySetInnerHTML={{__html:this.state.htmlContent}}></p>
         {
           this.state.Date.toLocaleTimeString()
         }
@@ -56,12 +61,17 @@ class Index extends Component {
   }
 
   render () {
+
     return (
       <div>
         {this.state.isShowHeader ? <Header /> : null}
         <button onClick={this.handleShowOrHide.bind (this)} >点击我</button>
         {/* <Clock></Clock> */}
         <AutoFocusInput/>
+        <Card>
+          <h2>I am Tang Youchao</h2>
+          <div>hello world</div>
+        </Card>
       </div>
 
     );
