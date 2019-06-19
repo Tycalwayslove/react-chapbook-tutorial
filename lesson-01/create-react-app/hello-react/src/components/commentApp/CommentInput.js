@@ -17,10 +17,6 @@ class CommentInput extends Component {
     this.setState ({
       content: event.target.value,
     });
-    this.props.getContent({
-      content: event.target.value,
-
-    })
   }
   handleSubmit(){
     if( this.props.onSubmit){
