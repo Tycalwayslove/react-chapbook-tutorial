@@ -13,11 +13,27 @@ class Header extends Component{
 class LikeButton extends Component {
   constructor(){
     super()
-    this.state = {isLiked:false}
+    this.state = {isLiked:false,count:null}
 
   }
   handleClickOnLikeButton(){
-    this.setState({isLiked:!this.state.isLiked})
+    // console.log(this.state.isLiked)
+    // this.setState({isLiked:!this.state.isLiked})
+    console.log(this.state.count)
+    // this.setState({count:this.state.count+1})
+    this.setState((prevState) => {
+      return { count: 0 }
+    })
+    this.setState((prevState) => {
+      return { count: prevState.count + 1 } // 上一个 setState 的返回是 count 为 0，当前返回 1
+    })
+    console.log(this.state.count)
+    this.setState((prevState) => {
+      console.log(prevState);
+      return { count: prevState.count + 2 } // 上一个 setState 的返回是 count 为 1，当前返回 3
+    })
+    console.log(this.state.count)
+
   }
   render(){
     return (
