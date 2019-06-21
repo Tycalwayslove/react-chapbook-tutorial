@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
+import PropTypes from 'prop-types';
+import wrapWithLoadData from './wrapWithLoadData';
 class CommentApp extends Component {
-  constructor () {
+  static propTypes = {
+    data:PropTypes.any,
+    saveData:PropTypes.func.isRequired
+
+  }
+  constructor (props) {
     console.log ('constructor');
-    super ();
+    super (props);
     this.state = {
-      comments: [],
+      comments: props.data
     };
   }
   componentWillMount () {
@@ -37,8 +44,9 @@ class CommentApp extends Component {
     this.setState ({
       comments,
     });
-    this._saveComments (comments);
-    console.log (comment);
+    // this._saveComments (comments);
+    this.props.saveData(comments) //hoc 使用wrapWithLoadData 高阶函数
+    console.log (comments);
   }
   handleDeleteComment(index){
     console.log(index)
@@ -60,5 +68,6 @@ class CommentApp extends Component {
     );
   }
 }
+CommentApp = wrapWithLoadData(CommentApp,'comments');
 
 export default CommentApp;

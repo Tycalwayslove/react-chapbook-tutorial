@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 // import CommentApp from './components/commentApp/CommentApp';
+import Index from './components/redux/Index';
 // import Index from './view/lesson2/style'
-import Index from './view/lesson3/index'
+// import Index from './view/lesson3/index'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Index />, document.getElementById('root'));
