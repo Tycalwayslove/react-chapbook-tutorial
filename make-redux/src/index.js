@@ -23,21 +23,28 @@ function renderContent(content){
   contentDOM.innerHTML = content.text
   contentDOM.style.color =content.color
 }
-
-function dispatch (action) {
-  switch(action.type){
-    case 'UPDATE_TITLE_TEXT':
-        appState.title.text = action.text
-        break
-    case 'UPDATE_TITLE_COLOR':
-        appState.title.content = action.content
-        break
-    default:
+// 根据dispatch 传入的type来改变state的值
+ function stateChanger (state,action) {
+   switch (action.type){
+     case 'UPDATE_TITLE_TEXT':
+      state.title.text = action.text
       break
-  }
-}
-renderApp(appState)
-dispatch({type:'UPDATE_TITLE_TEXT',text:'《react hello world'})
-dispatch({type:"UPDATE_TITLE_COLOR",color:'blue'})
+    case 'UPDATE_CONTENT_COLOR':
+      state.content.color = action.color
+      break
+      default:
+        break
+   }
+ }
 
-renderApp(appState)
+//  创建一个store
+function createStore (state,stateChanger){
+  const getState = () => state
+  const dispatch = (action) => stateChanger(state,action)
+  return {getState,dispatch}
+}
+
+const store = new createStore(appState,stateChanger)
+renderApp(store.getState())
+store.dispatch({type:"UPDATE_TITLE_TEXT",text:'hello world'})
+renderApp(store.getState())
