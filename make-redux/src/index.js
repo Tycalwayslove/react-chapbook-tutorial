@@ -23,4 +23,21 @@ function renderContent(content){
   contentDOM.innerHTML = content.text
   contentDOM.style.color =content.color
 }
+
+function dispatch (action) {
+  switch(action.type){
+    case 'UPDATE_TITLE_TEXT':
+        appState.title.text = action.text
+        break
+    case 'UPDATE_TITLE_COLOR':
+        appState.title.content = action.content
+        break
+    default:
+      break
+  }
+}
+renderApp(appState)
+dispatch({type:'UPDATE_TITLE_TEXT',text:'《react hello world'})
+dispatch({type:"UPDATE_TITLE_COLOR",color:'blue'})
+
 renderApp(appState)
